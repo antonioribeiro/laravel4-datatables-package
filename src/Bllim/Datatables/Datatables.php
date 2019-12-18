@@ -12,7 +12,7 @@
  */
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Arr;
@@ -64,7 +64,7 @@ class Datatables
     public function __construct()
     {
 
-        $this->setData($this->processData(Input::get()));
+        $this->setData($this->processData(Request::all()));
 
         return $this;
     }
@@ -703,7 +703,7 @@ class Datatables
                             $filter = $that->filter_columns[$column_aliases[$i]];
 
                             // check if "or" equivalent exists for given function
-                            // and if the number of parameters given is not excess 
+                            // and if the number of parameters given is not excess
                             // than call the "or" equivalent
 
                             $method_name = 'or' . ucfirst($filter['method']);
